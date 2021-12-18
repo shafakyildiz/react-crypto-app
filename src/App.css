@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+h1 {
+  text-decoration: underline;
+}
+
+body {
+  background-color: #282c34;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+li {
+  margin: 10px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -32,6 +46,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

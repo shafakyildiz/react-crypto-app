@@ -31,7 +31,7 @@ function App() {
       <div>{loading && <p>Loading...</p>}</div>
       {!loading &&
         data.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} style={{ listStyleType: "none" }}>
             {item.symbol} ({item.slug}) - ${item.metrics.market_data.price_usd}
           </li>
         ))}
