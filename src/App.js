@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
+// headers: { CMC_PRO_API_KEY: "04f33277-6bfa-4d69-8940-83b475db8964" },
+const apiBaseURL =
+  "https://data.messari.io/api/v1/assets?fields=id,slug,symbol,metrics/market_data/price_usd";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const { data: response } = await axios.get(apiBaseURL);
+        setData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error.message);
+      }
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Coin Market World</h1>
+      <div>{loading && <p>Loading...</p>}</div>
+      {!loading &&
+        data.map((item) => (
+          <li key={item.id}>
+            {item.symbol} ({item.slug}) - $
+            {(
+              Math.round(item.metrics.market_data.price_usd * 100) / 100
+            ).toFixed(5)}
+          </li>
+        ))}
     </div>
   );
 }
