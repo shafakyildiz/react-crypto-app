@@ -6,6 +6,12 @@ h1 {
   text-decoration: underline;
 }
 
+.datatable {
+  background-color: #282c34;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
   background-color: #282c34;
   color: #fff;
