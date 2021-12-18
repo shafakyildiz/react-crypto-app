@@ -16,6 +16,10 @@ function App() {
       selector: (row) => row.symbol,
     },
     {
+      name: "Coin Name",
+      selector: (row) => row.slug,
+    },
+    {
       name: "Price",
       selector: (row) => "$" + row.metrics.market_data.price_usd,
     },
