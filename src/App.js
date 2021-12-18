@@ -32,10 +32,7 @@ function App() {
       {!loading &&
         data.map((item) => (
           <li key={item.id}>
-            {item.symbol} ({item.slug}) - $
-            {(
-              Math.round(item.metrics.market_data.price_usd * 100) / 100
-            ).toFixed(5)}
+            {item.symbol} ({item.slug}) - ${item.metrics.market_data.price_usd}
           </li>
         ))}
     </div>
