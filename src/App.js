@@ -7,21 +7,29 @@ import DataTable from "react-data-table-component";
 const apiBaseURL =
   "https://data.messari.io/api/v1/assets?fields=id,slug,symbol,metrics/market_data/price_usd";
 
+  //*First letter capitalize
+  function capitalizeFirstLetter(str) {
+
+    const capitalized = str.charAt(0).toUpperCase() + str.slice(1);
+
+    return capitalized;
+}
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const columns = [
     {
       name: "Coin",
-      selector: (row) => row.symbol,
+      selector: (row) => capitalizeFirstLetter(row.symbol),
     },
     {
       name: "Coin Name",
-      selector: (row) => row.slug,
+      selector: (row) => capitalizeFirstLetter(row.slug),
     },
     {
       name: "Price",
-      selector: (row) => "$" + row.metrics.market_data.price_usd,
+      selector: (row) => "$" + row.metrics.market_data.price_usd.toFixed(7),
     },
   ];
   useEffect(() => {
@@ -42,12 +50,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Coin Market World</h1>
+      <h1 className="header">Coin Market World</h1>
       <div>{loading && <p>Loading...</p>}</div>
 
       <div className="datatable">
         {!loading && <DataTable columns={columns} data={data} />}
       </div>
+      <div >Also you can look <a className="footer" target="_blank" href="www.loremcolor.com">loremcolor.com</a></div>
     </div>
   );
 }
